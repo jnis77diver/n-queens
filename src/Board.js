@@ -79,12 +79,28 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+      var count = 0;
+      var chosenArray = board.get(rowIndex);
+      console.log("chosenArray is ", chosenArray);
+      for (var i = 0; i < chosenArray.length; i++) {
+        if( chosenArray[i] === 1 ) { count+=1; }
+      }
+      if( count > 1 ) {
+        return true;
+      } else {
+      return false;
+    }
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      return false; // fixme
+      var chessBoard = board.rows();
+      for (var i = 0; i < chessBoard.length; i++) {
+        if( board.hasRowConflictAt(chessBoard[i]) ) {
+          return false;
+        }
+      }
+      return true;
     },
 
 
@@ -146,3 +162,5 @@
   };
 
 }());
+
+//var board = new Board({n: 4});
